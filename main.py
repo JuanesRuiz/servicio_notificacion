@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import os
 
 app = Flask(__name__)
+CORS(app)  # Habilita CORS para todas las rutas
 
 @app.route('/notificar', methods=['POST'])
 def notificar():
@@ -13,5 +15,5 @@ def notificar():
     return jsonify({"Notificacion": f"Se notificó a {nombre} exitosamente."})
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 10000))  # Usa $PORT de Render o 10000 localmente
+    port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
