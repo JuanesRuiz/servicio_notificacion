@@ -1,14 +1,17 @@
 from flask import Flask, request, jsonify
+import os
 
-app = Flask (__name__)
+app = Flask(__name__)
 
-#Crear la ruta del endpoint
 @app.route('/notificar', methods=['POST'])
 def notificar():
+    if not request.is_json:
+        return jsonify({"error": "Content-Type debe ser application/json"}), 400
     data = request.json
     nombre = data.get("nombre", "desconocido")
-    print (f" notificando a {nombre}...")
-    return jsonify({"Notificacion": f"Se notifico a {nombre} exitosamente."})
+    print(f"Notificando a {nombre}...")
+    return jsonify({"Notificacion": f"Se notificó a {nombre} exitosamente."})
 
 if __name__ == '__main__':
-    app.run(host = '0.0.0.0', port = 10000)
+    port = int(os.environ.get("PORT", 10000))  # Usa $PORT de Render o 10000 localmente
+    app.run(host='0.0.0.0', port=port)
