@@ -1,11 +1,11 @@
-from flask import Flask, requests, jsonify
+from flask import Flask, request, jsonify
 
 app = Flask (__name__)
 
 #Crear la ruta del endpoint
 @app.route('/notificar', methods=['POST'])
 def notificar():
-    data = requests.json
+    data = request.json
     nombre = data.get("nombre", "desconocido")
     print (f" notificando a {nombre}...")
     return jsonify({"Notificacion": f"Se notifico a {nombre} exitosamente."})
