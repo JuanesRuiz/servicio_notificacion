@@ -8,7 +8,7 @@ def notificar():
     data = request.json
     nombre = data.get("nombre", "desconocido")
     print (f" notificando a {nombre}...")
-    return jsonfy({"Notificacion": f"Se notifico a {nombre} exitosamente."})
+    return jsonify({"Notificacion": f"Se notifico a {nombre} exitosamente."})
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = 10000)
