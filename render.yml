@@ -1,5 +1,5 @@
 services:
-    - type: web
+  - type: web
     name: servicio-notificacion
     env: python
     buildCommand: ""
